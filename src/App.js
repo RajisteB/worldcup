@@ -3,15 +3,17 @@ import './App.css';
 import axios from 'axios';
 import moment from 'moment';
 import countryCodes from 'country-code-info';
-import Schedule from './components/schedule';
 import Teams from './components/teams';
+import Schedule from './components/schedule';
+import Scores from './components/scores';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       teams: [],
-      matches: {},
+      matches: [],
+      scores: [],
       dataLoaded: false,
     }
   }
@@ -76,9 +78,6 @@ class App extends Component {
           return d.datetime === g.date ? g.matches.push(d) : null;
         })
       });
-
-      console.log(matchObj.games);
-
       this.setState({
         matches: matchObj.games,
         dataLoaded: true
@@ -88,23 +87,40 @@ class App extends Component {
     })
   }
 
+  getScores = () => {
+    axios.get('http://worldcup.sfg.io/matches/today')
+    .then(res => {
+      console.log(res);
+      this.setState({
+        scores: res.data
+      })
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   componentDidMount() {
     this.getTeams();
     this.getMatches();
+    this.getScores();
   }
 
   render() {
-    let { teams, matches, dataLoaded } = this.state;
-    console.log(teams);
+    let { teams, matches, scores, dataLoaded } = this.state;
+    console.log(scores);
     if (dataLoaded) {
       return (
         <main>
           <div>
-            <h1>WORLD CUP 2018 - TEAMS</h1>
+            <h1 className="title">Today's Scores</h1>
+            <Scores scores={scores}/>
+          </div>
+          <div>
+            <h1 className="title">Teams</h1>
             <Teams teams={teams}/>
           </div>
           <div>
-            <h1>WORLD CUP 2018 - UPCOMING GAMES</h1>
+            <h1 className="title">Upcoming Games</h1>
             <Schedule matches={matches}/>
           </div>
         </main>

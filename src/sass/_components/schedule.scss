@@ -1,0 +1,27 @@
+// ----------------
+// Container
+// ----------------
+.schedule-container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+// ----------------
+// Schedule
+// ----------------
+.schedule {
+  border-top: 1px solid #038EFF;
+  // border-bottom: 1px solid $blue;
+  margin: 5px 0px;
+  h2 {
+    padding: 20px 0px;
+  }
+}
+
+// ----------------
+// Game
+// ----------------
+.game {
+  margin: 18px 0px;
+}

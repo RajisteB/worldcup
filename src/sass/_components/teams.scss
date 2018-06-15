@@ -1,0 +1,39 @@
+// ----------------
+// Container
+// ----------------
+.teams-container {
+  width: 95%;
+  margin: 0 auto;
+}
+.country-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+// ----------------
+// Group
+// ----------------
+.group {
+  h2 {
+    margin: 20px 0px;
+    text-align: center;
+  }
+}
+
+// ----------------
+// Teams
+// ----------------
+.teams {
+  width: 40%;
+  margin: 10px 0px;
+  padding: 5px 0px;
+  display: flex;
+  
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
